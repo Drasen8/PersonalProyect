@@ -11,12 +11,9 @@
   <table>
     <thead>
       <tr>
-        <th>Título</th>
         <th>Identificador</th>
-        <th>Fecha de Disposición</th>
-        <th>Número Oficial</th>
-        <th>Fecha de Publicación</th>
-        <th>Fecha de Vigencia</th>
+        <th>Título</th>
+        <th>Url pdf</th>
       </tr>
     </thead>
     <tbody id="boe-data">
@@ -39,8 +36,11 @@ const row = document.createElement('tr');
       for (let i = 0; i < arrayData[j].length; i++) {
         const cell = document.createElement('td');
       
-      
+      if (arrayData[j][i].startsWith("https")){
+        cell.innerHTML = `<a href="${arrayData[j][i]}">${arrayData[j][i]}</a>`;
+      }else{
       cell.textContent = arrayData[j][i]; 
+    }
       tableBody.appendChild(row);
       row.appendChild(cell);
         }
