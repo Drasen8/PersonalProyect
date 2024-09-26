@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>BOE - Últimas Leyes Publicadas</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <h1>Leyes publicadas en el BOE</h1>
+  <table>
+    <thead>
+      <tr>
+        <th>Título</th>
+        <th>Identificador</th>
+        <th>Fecha de Disposición</th>
+        <th>Número Oficial</th>
+        <th>Fecha de Publicación</th>
+        <th>Fecha de Vigencia</th>
+      </tr>
+    </thead>
+    <tbody id="boe-data">
+      <!-- Aquí se mostrarán los datos -->
+    </tbody>
+  </table>
+
+  <script>
+    // Función para obtener los datos del BOE
+    async function fetchBoeData() {
+      try {
+        const response = await fetch('/api/boe');
+        const data = await response.json();
+        const arrayData = data ;
+        const tableBody = document.getElementById('boe-data');
+
+      //Bucle para obtener los datos del array
+      for (let j = 0; j < arrayData.length; j++) {
+const row = document.createElement('tr');
+      for (let i = 0; i < arrayData[j].length; i++) {
+        const cell = document.createElement('td');
+      
+      
+      cell.textContent = arrayData[j][i]; 
+      tableBody.appendChild(row);
+      row.appendChild(cell);
+        }
+      }
+      } catch (error) {
+        console.error('Error al obtener datos del BOE:', error);
+        
+      }
+    }
+
+    // Obtener los datos cuando la página se cargue
+    window.onload = fetchBoeData;
+  </script>
+</body>
+</html>

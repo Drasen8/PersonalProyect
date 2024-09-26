@@ -1,0 +1,36 @@
+table {
+  border-collapse: collapse;
+  width: 100%;
+  font-size: 16px;
+  font-family: Arial, sans-serif;
+}
+
+th, td {
+  border: 1px solid #ddd;
+  padding: 8px;
+  text-align: left;
+}
+
+th {
+  background-color: #f0f0f0;
+  color: #333;
+  font-weight: bold;
+}
+
+td {
+  border-bottom: 1px solid #ccc;
+}
+
+tbody tr:nth-child(even) {
+  background-color: #f9f9f9;
+}
+
+tbody tr:hover {
+  background-color: #e5e5e5;
+  cursor: pointer;
+}
+
+#boe-data {
+  overflow-y: auto;
+  height: 300px; /* ajusta el alto según sea necesario */
+}
