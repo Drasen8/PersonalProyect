@@ -1,7 +1,6 @@
 import axios from 'axios';
 
 //Variables
-let todosDatos=[];
 let datos=[];
 
 function obtenerUltimos7Dias() {
@@ -25,6 +24,7 @@ console.log(ultimos7Dias);
 
 // Función para obtener los datos del BOE para la fecha actual en formato YYYYMMDD
 const fetchData = async () => {
+  let todosDatos=[];
   try {
     // Obtener la fecha actual en formato YYYYMMDD
     const today = new Date().toISOString().split('T')[0].replace(/-/g, '');
@@ -76,17 +76,13 @@ const fetchData = async () => {
 }
 
 todosDatos.push(datos);
-/*for (let i = 0; i < datos.length; i+=3) {
-  let momentaneo= [datos[i],datos[i+1],datos[i+2]]
-  todosDatos.push(momentaneo)
-  console.log(momentaneo,"Asodkafosfb");
-}*/
+
  
      
     
     }
     // Retornamos los datos para utilizarlos en el frontend
-
+    console.log(todosDatos);
     return todosDatos;
   } catch (error) {
     if (error.response && error.response.status === 404) {
