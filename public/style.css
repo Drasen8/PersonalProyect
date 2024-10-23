@@ -1,36 +1,74 @@
-table {
-  border-collapse: collapse;
-  width: 100%;
-  font-size: 16px;
-  font-family: Arial, sans-serif;
-}
 
-th, td {
-  border: 1px solid #ddd;
-  padding: 8px;
-  text-align: left;
-}
-
-th {
-  background-color: #f0f0f0;
-  color: #333;
-  font-weight: bold;
-}
-
-td {
-  border-bottom: 1px solid #ccc;
-}
-
-tbody tr:nth-child(even) {
-  background-color: #f9f9f9;
-}
-
-tbody tr:hover {
-  background-color: #e5e5e5;
-  cursor: pointer;
-}
-
-#boe-data {
-  overflow-y: auto;
-  height: 300px; /* ajusta el alto según sea necesario */
-}
+        body {
+            height: 100vh; /* Asegura que el contenedor principal ocupe toda la altura de la ventana */
+            overflow: hidden; /* Evita que la página principal se desplace */
+        }
+        .container {
+            display: flex;
+            flex-direction: column;
+            height: 100vh;
+        }
+        .header {
+            display: flex;
+            justify-content: space-between;
+            padding: 10px;
+            background-color: #f4f4f4;
+        }
+        .menu {
+            display: flex;
+            align-items: center;
+        }
+        .menu-icon {
+            width: 40px;
+            height: 40px;
+            background-color: #ccc;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        .search-area {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        .content {
+            display: flex;
+            flex: 1;
+            flex-direction: row-reverse; /* Cambia la dirección de las columnas, colocando el sidebar a la derecha */
+        }
+        .sidebar {
+            width: 150px;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            padding: 10px;
+            background-color: #f4f4f4;
+        }
+       
+        .sidebar .button {
+            margin-bottom: 10px;
+            padding: 10px;
+            text-align: center;
+            background-color: #ccc;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        .content-area {
+            flex: 1;
+            padding: 20px;
+            overflow-y: auto;
+            overflow-x: auto;
+            max-height: 80vh; /* Evita que el área se expanda más allá de la altura disponible */
+        }
+        .user-area {
+            display: flex;
+            align-items: center;
+        }
+        .user-icon {
+            width: 40px;
+            height: 40px;
+            background-color: #ccc;
+            border-radius: 50%;
+        }

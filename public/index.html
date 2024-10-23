@@ -1,58 +1,90 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>BOE - Últimas Leyes Publicadas</title>
-  <link rel="stylesheet" href="style.css">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>BOE Leyes</title>
+    
 </head>
 <body>
-  <h1>Leyes publicadas en el BOE</h1>
-  <table>
-    <thead>
-      <tr>
-        <th>Identificador</th>
-        <th>Título</th>
-        <th>Url pdf</th>
-      </tr>
-    </thead>
-    <tbody id="boe-data">
-      <!-- Aquí se mostrarán los datos -->
-    </tbody>
-  </table>
+    <div class="container">
+        <!-- Header con fecha, búsqueda, desplegable y foto de usuario -->
+        <div class="header">
+            <div class="menu">
+                <div class="menu-icon">☰</div>
+            </div>
+            <div class="search-area">
+                <h3>Fecha inicial:</h3>
+                <input type="date" name="fecha" id="fecha">
+                <h3>Fecha final:</h3>
+                <input type="date" name="fecha" id="fecha">
+                <input type="text" placeholder="Buscar">
+                <button>🔍</button>
+                <select name="tematica" id="tematica">
+                    <option value="">Temática</option>
+                </select>
+            </div>
+            <div class="user-area">
+                <div class="user-icon"></div>
+                <p>Usuario</p>
+            </div>
+        </div>
 
-  <script>
-    // Función para obtener los datos del BOE
-    async function fetchBoeData() {
-      try {
-        const response = await fetch('/api/boe');
-        const data = await response.json();
-        const arrayData = data ;
-        const tableBody = document.getElementById('boe-data');
-console.log(data);
-      //Bucle para obtener los datos del array
-      for (let j = 0; j < arrayData.length; j++) {
-const row = document.createElement('tr');
-      for (let i = 0; i < arrayData[j].length; i++) {
-        const cell = document.createElement('td');
-      
-      if (arrayData[j][i].startsWith("https")){
-        cell.innerHTML = `<a href="${arrayData[j][i]}">${arrayData[j][i]}</a>`;
-      }else{
-      cell.textContent = arrayData[j][i]; 
-    }
-      tableBody.appendChild(row);
-      row.appendChild(cell);
+        <!-- Contenido principal -->
+        <div class="content">
+            <!-- Sidebar para botones -->
+            <div class="sidebar">
+                <h3>Elige lo que quieres que muestre:</h3>
+                <label for="horns">Leyes</label>
+                <input type="checkbox" id="leyes" name="Leyes">
+                <label for="horns">Reales Decretos</label>
+                <input type="checkbox" id="realesDecretos" name="Reales Decretos">
+                <div class="button">Chat GPT</div>
+            </div>
+
+            <!-- Área principal de contenido -->
+            <div class="content-area" id="boe-data">
+            </div>
+        </div>
+    </div>
+    <script>
+        // Función para obtener los datos del BOE
+        async function fetchBoeData() {
+          try {
+            const response = await fetch('/ult-7-dias');
+            const data = await response.json();
+            const arrayData = data ;
+            const tableBody = document.getElementById('boe-data');
+
+             // Limpiar el contenido previo antes de añadir los nuevos datos
+                tableBody.innerHTML = '';
+
+                console.log(data);
+          //Bucle para obtener los datos del array
+          for (let j = 0; j < arrayData.length; j++) {
+            const separador = document.createElement('hr');
+    const row = document.createElement('tr');
+          for (let i = 0; i < arrayData[j].length; i++) {
+            const cell = document.createElement('td');
+          
+          if (arrayData[j][i].startsWith("https")){
+            cell.innerHTML = `<a href="${arrayData[j][i]}">${arrayData[j][i]}</a>`;
+          }else{
+          cell.textContent = arrayData[j][i]; 
         }
-      }
-      } catch (error) {
-        console.error('Error al obtener datos del BOE:', error);
-        
-      }
-    }
-
-    // Obtener los datos cuando la página se cargue
-    window.onload = fetchBoeData;
-  </script>
+          tableBody.appendChild(row);
+          row.appendChild(cell);
+          tableBody.appendChild(separador);
+            }
+          }
+          } catch (error) {
+            console.error('Error al obtener datos del BOE:', error);
+            
+          }
+        }
+    
+        // Obtener los datos cuando la página se cargue
+        window.onload = fetchBoeData;
+      </script>
 </body>
 </html>
